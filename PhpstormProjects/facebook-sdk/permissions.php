@@ -22,11 +22,11 @@ $helper = $fb->getRedirectLoginHelper();
 try {
     $token = $helper->getAccessToken();
     if (isset($token)) {
-        $response = $fb->post('/1567710166830880/feed', $linkData, $config['access_token']);
+        $response = $fb->post('/me/feed/1567710166830880', $linkData, $config['access_token']);
         $graphNode = $response->getGraphNode();
         echo 'Posted with id: ' . $graphNode['id'];
     } else {
-        $permision = array("scope" => "email,publish_actions,manage_pages");
+        $permision = array("scope" => "email,publish_pages,publish_actions,manage_pages");
         echo "<a href='" . $helper->getLoginUrl($url, $permision) . "'>Click to post</a>";
     }
 } catch (FacebookSDKException $e) {
